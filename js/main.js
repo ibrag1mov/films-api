@@ -91,9 +91,17 @@ elForm.addEventListener('submit', (evt)=>{
     evt.preventDefault()
 
     if(elInput.value != ''){
+        allBtns.classList.remove('d-none');
+        allBtns.classList.add('d-flex');
+        pageInfo.classList.remove('d-none');
+        pageInfo.classList.add('d-block');
         getFilms();
     }
     else{
+        allBtns.classList.remove('d-flex');
+        allBtns.classList.add('d-none');
+        pageInfo.classList.remove('d-block');
+        pageInfo.classList.add('d-none');
         elList.innerHTML=`<h2 class="py-5 my-5 text-center text-light mx-auto">Films not found🙁</h2>`; 
     }
     
