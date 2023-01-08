@@ -5,6 +5,9 @@ let elList = document.querySelector('.js-list');
 let elPrevBtn = document.querySelector('.js-prev');
 let elNextBtn = document.querySelector('.js-next');
 let allBtns = document.querySelector('.btn-next-prev');
+let filmTitile = document.querySelector('.film-title');
+let filmPage = document.querySelector('.film-page');
+let pageInfo = document.querySelector('.page-info');
 
 
 
@@ -54,6 +57,9 @@ async function getFilms(){
         elPrevBtn.removeAttribute("disabled")
     }
 
+    filmPage.textContent = activePage;
+    filmTitile.textContent = elInput.value;
+
     const response = await fetch(`https://www.omdbapi.com/?apikey=8704b0b0&s=${elInput.value}&page=${activePage}`);
     const data = await response.json();
     if(data.Search){
@@ -68,10 +74,14 @@ async function getFilms(){
           }
           allBtns.classList.remove('d-none');
           allBtns.classList.add('d-flex');
+          pageInfo.classList.remove('d-none');
+          pageInfo.classList.add('d-block');
     }
     else{ 
          allBtns.classList.remove('d-flex');
          allBtns.classList.add('d-none');
+         pageInfo.classList.remove('d-block');
+         pageInfo.classList.add('d-none');
         elList.innerHTML=`<h2 class="py-5 my-5 text-center text-light mx-auto">Films not found🙁</h2>`;
     }
 }
